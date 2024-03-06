@@ -4,9 +4,9 @@ import argparse
 from pathlib import Path
 
 from sklearn.metrics import accuracy_score
-from xgboost import XGBClassifier
+from sklearn.naive_bayes import GaussianNB
 
-def xgboost(config):
+def naive_bayes(config):
     # Open and reads file "data"
     with open(config.data) as data_file:
         data = json.load(data_file)
@@ -15,13 +15,13 @@ def xgboost(config):
     # thus we need to load again from such string in order to get the dict-type object.
     data = json.loads(data)
 
-    X_train = data['x_train']
+    X_train = data['X_train']
     y_train = data['y_train']
-    X_test = data['x_test']
+    X_test = data['X_test']
     y_test = data['y_test']
     
     # Initialize and train the model
-    model = XGBClassifier()
+    model = GaussianNB()
     model.fit(X_train, y_train)
 
     # Get predictions
@@ -38,16 +38,17 @@ def xgboost(config):
         
 if __name__ == '__main__':
     
-    # This component does not receive any input, it only outputs one artifact which is `data`.
-    # Output argument: data
+    # Defining and parsing the command-line arguments
     p = argparse.ArgumentParser(description='Program description')
+    
+    # Input argument: data
+    # Output argument: accuracy
     p.add_argument('--data', type=str)
     p.add_argument('--accuracy', type=str)
     
     config = p.parse_args()
     
     # Creating the directory where the OUTPUT file will be created, (the directory may or may not exist).
-    # This will be used for other component's input (e.g. decision tree, logistic regression)
-    Path(config.data).parent.mkdir(parents=True, exist_ok=True)
+    Path(config.accuracy).parent.mkdir(parents=True, exist_ok=True)
     
-    xgboost(config)
+    naive_bayes(config)

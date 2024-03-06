@@ -6,7 +6,7 @@ outputs:
 
 implementation:
   container:
-    image: omerbsezer/kubeflow_component:download_breast_cancer_data_v1
+    image: nevret/kubeflow-component-tutorial:download_data_v1
     command: [
       python, download_data.py,
 

@@ -1,5 +1,5 @@
-name: Xg Boost classifier
-description: Trains an xg boost classifier
+name: XGBoost classifier
+description: Trains an xgboost classifier
 
 inputs:
 - {name: Data, type: LocalPath, description: 'Path where data is stored.'}
@@ -8,14 +8,13 @@ outputs:
 
 implementation:
   container:
-    image: omerbsezer/kubeflow_component:xg_boost_v1
+    image: nevret/kubeflow-component-tutorial:xgb_v1
     command: [
-      python, xg_boost.py,
+      python, xgb.py,
 
       --data,
       {inputPath: Data},
 
       --accuracy,
       {outputPath: Accuracy},
-
     ]

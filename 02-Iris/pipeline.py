@@ -32,7 +32,7 @@ def iris_pipeline():
     
 if __name__ == "__main__":
     import kfp.compiler as compiler
-    compiler.Compiler().compile(iris_pipeline, "pipeline.yaml")
+    compiler.Compiler().compile(iris_pipeline, "02-Iris/pipeline.yaml")
     
     import kfp
     import requests

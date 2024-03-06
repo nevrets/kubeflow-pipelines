@@ -1,5 +1,5 @@
 FROM python:3.8-slim
-WORKDIR /pipeline
-COPY requirements.txt /pipeline
+WORKDIR /src
+COPY requirements.txt /src
 RUN pip install -r requirements.txt
-COPY download_data.py /pipeline
+COPY logistic_regression.py /src
