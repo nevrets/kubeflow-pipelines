@@ -6,6 +6,7 @@ from pathlib import Path
 from sklearn.metrics import accuracy_score
 from sklearn.naive_bayes import GaussianNB
 
+
 def naive_bayes(config):
     # Open and reads file "data"
     with open(config.data) as data_file:
@@ -31,7 +32,7 @@ def naive_bayes(config):
     accuracy = accuracy_score(y_test, y_pred)
 
     # Save output into file
-    with open(config.accuracy, 'w') as accuracy_file:
+    with open(config.acc, 'w') as accuracy_file:
         accuracy_file.write(str(accuracy))
         
         
@@ -44,11 +45,11 @@ if __name__ == '__main__':
     # Input argument: data
     # Output argument: accuracy
     p.add_argument('--data', type=str)
-    p.add_argument('--accuracy', type=str)
+    p.add_argument('--acc', type=str)
     
     config = p.parse_args()
     
     # Creating the directory where the OUTPUT file will be created, (the directory may or may not exist).
-    Path(config.accuracy).parent.mkdir(parents=True, exist_ok=True)
+    Path(config.acc).parent.mkdir(parents=True, exist_ok=True)
     
     naive_bayes(config)

@@ -2,14 +2,14 @@ name: Download Data Function
 description: Download toy data from sklearn datasets
 
 outputs:
-- {name: Data, type: LocalPath, description: 'Path where data will be stored.'}
+- {name: json_data, type: LocalPath, description: 'Path where data will be stored.'}
 
 implementation:
   container:
-    image: nevret/kubeflow-component-tutorial:download_data_v1
+    image: nevret/nevret-kubeflow-tutorial:download_data_v1
     command: [
       python, download_data.py,
 
       --data,
-      {outputPath: Data},
+      {outputPath: json_data},
     ]

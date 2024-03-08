@@ -6,6 +6,7 @@ from pathlib import Path
 from sklearn.metrics import accuracy_score
 from xgboost import XGBClassifier
 
+
 def xgb(config):
     # Open and reads file "data"
     with open(config.data) as data_file:
@@ -28,26 +29,27 @@ def xgb(config):
     y_pred = model.predict(X_test)
     
     # Get accuracy
-    score = accuracy_score(y_test, y_pred)
+    accuracy = accuracy_score(y_test, y_pred)
 
     # Save output into file
-    with open(config.accuracy, 'w') as accuracy_file:
-        accuracy_file.write(str(score))
-        
-        
-        
+    with open(config.acc, 'w') as accuracy_file:
+        accuracy_file.write(str(accuracy))
+
+
+
 if __name__ == '__main__':
+
+    # Defining and parsing the command-line arguments
+    p = argparse.ArgumentParser(description='My program description')
     
-    # This component does not receive any input, it only outputs one artifact which is `data`.
-    # Output argument: data
-    p = argparse.ArgumentParser(description='Program description')
+    # Input argument: data
+    # Output argument: accuracy
     p.add_argument('--data', type=str)
-    p.add_argument('--accuracy', type=str)
-    
+    p.add_argument('--acc', type=str)
+
     config = p.parse_args()
-    
-    # Creating the directory where the OUTPUT file will be created, (the directory may or may not exist).
-    # This will be used for other component's input (e.g. decision tree, logistic regression)
-    Path(config.data).parent.mkdir(parents=True, exist_ok=True)
+
+    # Creating the directory where the OUTPUT file will be created (the directory may or may not exist).
+    Path(config.acc).parent.mkdir(parents=True, exist_ok=True)
     
     xgb(config)

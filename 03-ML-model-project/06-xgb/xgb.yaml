@@ -1,5 +1,5 @@
-name: Logistic Regression Classifier
-description: Trains a Logistic Regression Classifier
+name: XGBoost classifier
+description: Trains an xgboost classifier
 
 inputs:
 - {name: json_data, type: LocalPath, description: 'Path where data is stored.'}
@@ -8,13 +8,13 @@ outputs:
 
 implementation:
   container:
-    image: nevret/nevret-kubeflow-tutorial:logistic_regression_v2
+    image: nevret/nevret-kubeflow-tutorial:xgb_v3
     command: [
-      python, logistic_regression.py,
+      python, xgb.py,
 
       --data,
       {inputPath: json_data},
 
       --acc,
-      {outputPath: acc},
+      {outputPath: acc},    
     ]

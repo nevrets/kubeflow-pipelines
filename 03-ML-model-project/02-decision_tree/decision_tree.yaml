@@ -2,19 +2,19 @@ name: Decision Tree classifier
 description: Trains a  decision tree classifier
 
 inputs:
-- {name: Data, type: LocalPath, description: 'Path where data is stored.'}
+- {name: json_data, type: LocalPath, description: 'Path where data is stored.'}
 outputs:
-- {name: Accuracy, type: Float, description: 'Accuracy metric'}
+- {name: acc, type: Float, description: 'Accuracy metric'}
 
 implementation:
   container:
-    image: nevret/kubeflow-component-tutorial:decision_tree_v1
+    image: nevret/nevret-kubeflow-tutorial:decision_tree_v2
     command: [
       python, decision_tree.py,
 
       --data,
-      {inputPath: Data},
+      {inputPath: json_data},
 
-      --accuracy,
-      {outputPath: Accuracy},
+      --acc,
+      {outputPath: acc},
     ]

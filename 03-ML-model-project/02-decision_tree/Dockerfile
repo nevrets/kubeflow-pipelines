@@ -1,5 +1,5 @@
 FROM python:3.8-slim
-WORKDIR /src
-COPY requirements.txt /src
+WORKDIR /app
+COPY requirements.txt /app
 RUN pip install -r requirements.txt
-COPY decision_tree.py /src
+COPY decision_tree.py /app
