@@ -2,7 +2,7 @@ apiVersion: kubeflow.org/v1beta1
 kind: Experiment
 metadata:
   namespace: addaugmentation
-  name: jklee-test
+  name: random-experiment
 spec:
   objective:
     type: maximize
@@ -55,7 +55,6 @@ spec:
             containers:
               - name: training-container
                 image: seokii/mnist-katib-random:0.0.4
-                # image: docker.io/nevret/nevret-katib-mnist:0.1
                 command:
                   - "python"
                   - "/mnist-katib-random.py"

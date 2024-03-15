@@ -3,7 +3,6 @@ import argparse
 
 
 def train():
-    print("TensorFlow version: ", tf.__version__)
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--learning_rate', default=0.01, type=float, required=False)
@@ -39,7 +38,7 @@ def train():
                   metrics=['acc'])
 
     model.fit(x_train, y_train,
-              batch_size=64, epochs=5,
+              batch_size=64, epochs=10,
               validation_data=(x_val, y_val))
 
     loss, acc = model.evaluate(x_test, y_test, batch_size=128)
