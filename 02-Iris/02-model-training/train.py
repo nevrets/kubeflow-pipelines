@@ -22,7 +22,6 @@ def get_train_test_data(iris):
     print('shape of training data : ', train.shape)
     print('shape of testing data', test.shape)
 
-
     X_train = train.drop(columns=['Species'], axis=1)
     y_train = train['Species']
     X_test = test.drop(columns=['Species'], axis=1)

@@ -1,9 +1,9 @@
 apiVersion: kubeflow.org/v1beta1
 kind: Experiment
 metadata:
-  name: random-experiment
-  namespace: ''
-spec:
+  name: jklee-test
+  namespace: ''                         # kubeflow api 버전과 Experiment, Namespace 정의
+spec:    # 실험에 대한 다양한 옵션 정의
   maxTrialCount: 24
   parallelTrialCount: 3
   maxFailedTrialCount: 3
@@ -11,9 +11,9 @@ spec:
   objective:
     type: maximize
     goal: 0.99
-    objectiveMetricName: val_acc
+    objectiveMetricName: val-acc
     additionalMetricNames:
-      - val_loss
+      - val-loss                        # 무조건 형식 이렇게
   algorithm:
     algorithmName: random
     algorithmSettings: []
@@ -39,7 +39,7 @@ spec:
       fileSystemPath:
         path: /var/log/katib/metrics.log
         kind: File
-  trialTemplate:
+  trialTemplate:    # Trial의 template 정의
     primaryContainerName: training-container
     successCondition: status.conditions.#(type=="Complete")#|#(status=="True")#
     failureCondition: status.conditions.#(type=="Failed")#|#(status=="True")#
@@ -65,8 +65,10 @@ spec:
           spec:
             containers:
               - name: training-container
-                image: seokii/mnist-katib-random:0.0.4
-                # image: docker.io/nevret/nevret-katib-mnist:0.1
+                image: docker.io/nevret/nevret-katib-mnist:0.2-gpu
+                resources:
+                  limits:
+                    nvidia.com/mig-1g.10gb: 0      # GPU
                 command:
                   - "python"
                   - "/mnist-katib-random.py"

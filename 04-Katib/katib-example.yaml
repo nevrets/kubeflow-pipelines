@@ -12,8 +12,8 @@ spec:
       - val-loss
   algorithm:
     algorithmName: random
+  maxTrialCount: 24
   parallelTrialCount: 3
-  maxTrialCount: 60
   maxFailedTrialCount: 3
   parameters:
     - name: learning_rate
@@ -54,7 +54,7 @@ spec:
           spec:
             containers:
               - name: training-container
-                image: seokii/mnist-katib-random:0.0.4
+                image: docker.io/nevret/nevret-katib-mnist:0.1
                 command:
                   - "python"
                   - "/mnist-katib-random.py"
