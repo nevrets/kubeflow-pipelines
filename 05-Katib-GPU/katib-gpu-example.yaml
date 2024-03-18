@@ -33,6 +33,9 @@ spec:
         max: "1"
   trialTemplate:
     primaryContainerName: training-container
+    successCondition: status.conditions.#(type=="Complete")#|#(status=="True")#
+    failureCondition: status.conditions.#(type=="Failed")#|#(status=="True")#
+    retain: True      # log 확인 가능
     trialParameters:
       - name: learning_rate
         description: Learning Rate for modeling training
@@ -57,7 +60,7 @@ spec:
                 image: docker.io/nevret/nevret-katib-mnist:0.2-gpu
                 resources:
                   limits:
-                    nvidia.com/mig-1g.10gb: 0     
+                    nvidia.com/mig-1g.10gb: 0
                 command:
                   - "python"
                   - "/mnist-katib-random.py"
