@@ -68,8 +68,9 @@ spec:    # 실험에 대한 다양한 옵션 정의
                 image: docker.io/nevret/nevret-katib-mnist:0.2-gpu
                 resources:
                   limits:
-                    nvidia.com/mig-1g.10gb: 0      # GPU
+                    nvidia.com/mig-1g.10gb: 0      # GPU, 제대로 써주거나 아니면 resources:를 제외하거나
                 command:
+                  # - "CUDA_VISIBLE_DEVICES="
                   - "python"
                   - "/mnist-katib-random.py"
                   - "--learning_rate=${trialParameters.learning_rate}"
