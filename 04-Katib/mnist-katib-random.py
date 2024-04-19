@@ -1,6 +1,8 @@
 import tensorflow as tf
 import argparse
 
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 
 def train():
 

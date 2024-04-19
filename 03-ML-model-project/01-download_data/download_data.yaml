@@ -6,7 +6,7 @@ outputs:
 
 implementation:
   container:
-    image: nevret/nevret-kubeflow-tutorial:download_data_v1
+    image: nevret/nevret-kubeflow-tutorial:download_data_v1   # habor 
     command: [
       python, download_data.py,
 
