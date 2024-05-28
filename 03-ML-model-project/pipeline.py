@@ -20,12 +20,12 @@ def show_results(decision_tree:float,
 @dsl.pipeline(name='ML Models Pipeline', description='Applies Decision Tree, Logistic Regression, SVM, Naive Bayes, XGBoost for classification problem.')
 def ml_models_pipeline():
     # Loads the yaml manifest for each component
-    download = kfp.components.load_component_from_file('/data/nevret/kubeflow_pipelines/05-ML-model-project/01-download_data/download_data.yaml')
-    decision_tree = kfp.components.load_component_from_file('/data/nevret/kubeflow_pipelines/05-ML-model-project/02-decision_tree/decision_tree.yaml')
-    logistic_regression = kfp.components.load_component_from_file('/data/nevret/kubeflow_pipelines/05-ML-model-project/03-logistic_regression/logistic_regression.yaml')
-    svm = kfp.components.load_component_from_file('/data/nevret/kubeflow_pipelines/05-ML-model-project/04-svm/svm.yaml')
-    naive_bayes = kfp.components.load_component_from_file('/data/nevret/kubeflow_pipelines/05-ML-model-project/05-naive_bayes/naive_bayes.yaml')
-    xgb = kfp.components.load_component_from_file('/data/nevret/kubeflow_pipelines/05-ML-model-project/06-xgb/xgb.yaml')
+    download = kfp.components.load_component_from_file('/data/nevret/kubeflow_pipelines/03-ML-model-project/01-download_data/download_data.yaml')
+    decision_tree = kfp.components.load_component_from_file('/data/nevret/kubeflow_pipelines/03-ML-model-project/02-decision_tree/decision_tree.yaml')
+    logistic_regression = kfp.components.load_component_from_file('/data/nevret/kubeflow_pipelines/03-ML-model-project/03-logistic_regression/logistic_regression.yaml')
+    svm = kfp.components.load_component_from_file('/data/nevret/kubeflow_pipelines/03-ML-model-project/04-svm/svm.yaml')
+    naive_bayes = kfp.components.load_component_from_file('/data/nevret/kubeflow_pipelines/03-ML-model-project/05-naive_bayes/naive_bayes.yaml')
+    xgb = kfp.components.load_component_from_file('/data/nevret/kubeflow_pipelines/03-ML-model-project/06-xgb/xgb.yaml')
     
     # Run download_data task
     download_task = download()
@@ -45,13 +45,13 @@ def ml_models_pipeline():
 
 if __name__ == '__main__':
     # ml_models_pipeline()
-    kfp.compiler.Compiler().compile(ml_models_pipeline, "05-ML-model-project/ML-model-pipeline.yaml")
+    kfp.compiler.Compiler().compile(ml_models_pipeline, "03-ML-model-project/ML-model-pipeline.yaml")
     
     import requests
 
     USERNAME = "jklee@euclidsoft.co.kr"
     PASSWORD = "dbzmfflem1!"
-    NAMESPACE = "addaugmentation"
+    NAMESPACE = "add-augmentation"
     HOST = "https://kubeflow.euso.kr" # istio-ingressgateway's external-ip created by the load balancer.
     
     session = requests.Session()

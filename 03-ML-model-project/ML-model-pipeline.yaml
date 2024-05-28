@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
   generateName: ml-models-pipeline-
-  annotations: {pipelines.kubeflow.org/kfp_sdk_version: 1.8.22, pipelines.kubeflow.org/pipeline_compilation_time: '2024-03-08T14:56:56.586447',
+  annotations: {pipelines.kubeflow.org/kfp_sdk_version: 1.8.22, pipelines.kubeflow.org/pipeline_compilation_time: '2024-05-28T10:29:42.191006',
     pipelines.kubeflow.org/pipeline_spec: '{"description": "Applies Decision Tree,
       Logistic Regression, SVM, Naive Bayes, XGBoost for classification problem.",
       "name": "ML Models Pipeline"}'}
@@ -38,7 +38,7 @@ spec:
           "type": "LocalPath"}], "name": "Decision Tree classifier", "outputs": [{"description":
           "Accuracy metric", "name": "acc", "type": "Float"}]}', pipelines.kubeflow.org/component_ref: '{"digest":
           "7276deb17ba4afbb799043c26b2e78e65ecc872ecbd5ec03c4dedd70813ca923", "url":
-          "/data/nevret/kubeflow_pipelines/05-ML-model-project/02-decision_tree/decision_tree.yaml"}'}
+          "/data/nevret/kubeflow_pipelines/03-ML-model-project/02-decision_tree/decision_tree.yaml"}'}
   - name: download-data-function
     container:
       args: []
@@ -58,8 +58,8 @@ spec:
           "nevret/nevret-kubeflow-tutorial:download_data_v1"}}, "name": "Download
           Data Function", "outputs": [{"description": "Path where data will be stored.",
           "name": "json_data", "type": "LocalPath"}]}', pipelines.kubeflow.org/component_ref: '{"digest":
-          "96e48c3ac96466c99e04ae66a18b2bed39de133193a1daf29726c648620f2a96", "url":
-          "/data/nevret/kubeflow_pipelines/05-ML-model-project/01-download_data/download_data.yaml"}'}
+          "17dab5727f69771fb20e887ff6ac3aab463d67e7f645a007424086b94a6e50be", "url":
+          "/data/nevret/kubeflow_pipelines/03-ML-model-project/01-download_data/download_data.yaml"}'}
   - name: logistic-regression-classifier
     container:
       args: []
@@ -88,7 +88,7 @@ spec:
           "type": "LocalPath"}], "name": "Logistic Regression Classifier", "outputs":
           [{"description": "Accuracy metric", "name": "acc", "type": "Float"}]}',
         pipelines.kubeflow.org/component_ref: '{"digest": "b5d13745cc998ed42be68c85682d785f32bf3e0f5f1326a66576e59cf6cbc4f5",
-          "url": "/data/nevret/kubeflow_pipelines/05-ML-model-project/03-logistic_regression/logistic_regression.yaml"}'}
+          "url": "/data/nevret/kubeflow_pipelines/03-ML-model-project/03-logistic_regression/logistic_regression.yaml"}'}
   - name: ml-models-pipeline
     dag:
       tasks:
@@ -162,7 +162,7 @@ spec:
           "LocalPath"}], "name": "Naive Bayes classifier", "outputs": [{"description":
           "Accuracy metric", "name": "acc", "type": "Float"}]}', pipelines.kubeflow.org/component_ref: '{"digest":
           "622dcaf2e98acedf342cd010ddac4ea1a953d11a2002df204de9ff128275076e", "url":
-          "/data/nevret/kubeflow_pipelines/05-ML-model-project/05-naive_bayes/naive_bayes.yaml"}'}
+          "/data/nevret/kubeflow_pipelines/03-ML-model-project/05-naive_bayes/naive_bayes.yaml"}'}
   - name: show-results
     container:
       args: [--decision-tree, '{{inputs.parameters.decision-tree-classifier-acc}}',
@@ -259,7 +259,7 @@ spec:
           "LocalPath"}], "name": "Support Vector (svm) classifier", "outputs": [{"description":
           "Accuracy metric", "name": "acc", "type": "Float"}]}', pipelines.kubeflow.org/component_ref: '{"digest":
           "0206aac8cab48fac98d0ca3c1ef3112e3511370f3e31e42e43ecc8ff1be2cde1", "url":
-          "/data/nevret/kubeflow_pipelines/05-ML-model-project/04-svm/svm.yaml"}'}
+          "/data/nevret/kubeflow_pipelines/03-ML-model-project/04-svm/svm.yaml"}'}
   - name: xgboost-classifier
     container:
       args: []
@@ -287,7 +287,7 @@ spec:
           "LocalPath"}], "name": "XGBoost classifier", "outputs": [{"description":
           "Accuracy metric", "name": "acc", "type": "Float"}]}', pipelines.kubeflow.org/component_ref: '{"digest":
           "905844f1e3ac1f9ad154cba20236f6a0ce45a237fd843aafb0e4020a9c638149", "url":
-          "/data/nevret/kubeflow_pipelines/05-ML-model-project/06-xgb/xgb.yaml"}'}
+          "/data/nevret/kubeflow_pipelines/03-ML-model-project/06-xgb/xgb.yaml"}'}
   arguments:
     parameters: []
   serviceAccountName: pipeline-runner
